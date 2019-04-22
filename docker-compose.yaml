@@ -1,0 +1,21 @@
+version: '3.6'
+networks:
+    envoymesh:
+        external: true
+
+services:
+  aria2-local:
+    container_name: aria2-web
+    restart: always
+    image: ilovelll/aria2-web
+    environment:
+      - SECRET=${ARIA2_SECRET}
+    expose:
+      - 80
+      - 6800
+      - 8080
+    volumes:
+      - ./aria2-local/config:/config
+      - ./aria2-local/downloads:/data
+    networks:
+      - envoymesh
